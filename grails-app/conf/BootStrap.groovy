@@ -4,7 +4,7 @@ import bootcamp.Employee
 class BootStrap {
 
     def init = { servletContext ->
-        transientExample()
+        timestampExample()
     }
 
     void getter() {
@@ -26,9 +26,20 @@ class BootStrap {
         println "########################################################"
     }
 
+    void timestampExample() {
+        Employee employee = new Employee(firstName: "Ankur", lastName: "Tripathi")
+        println "########################################################"
+        println "Timestamps before save Datecreated: ${employee.dateCreated} -- lastUpdated: ${employee.lastUpdated}"
+        println "########################################################"
+        employee.save()
+        println "Timestamps after save Datecreated: ${employee.dateCreated} -- lastUpdated: ${employee.lastUpdated}"
+        println "########################################################"
+    }
+
     Company createCompany() {
         return new Company(name: "Intelligrape").save(flush: true)
     }
+
 
     def destroy = {
     }
