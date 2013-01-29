@@ -3,7 +3,7 @@ import bootcamp.Company
 class BootStrap {
 
     def init = { servletContext ->
-        getter()
+        companyToString()
     }
 
     void getter() {
@@ -13,7 +13,13 @@ class BootStrap {
         println "########################################################"
     }
 
-    Company createCompany(){
+    void companyToString() {
+        println "########################################################"
+        println "toString of company ${createCompany()}"
+        println "########################################################"
+    }
+
+    Company createCompany() {
         return new Company(name: "Intelligrape").save(flush: true)
     }
 
