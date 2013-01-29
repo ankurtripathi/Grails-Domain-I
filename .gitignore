@@ -41,4 +41,6 @@
 
 # other
 *.iws
-
+Grails-Domain-I-grailsPlugins.iml
+Grails-Domain-I.iml
+.idea/
