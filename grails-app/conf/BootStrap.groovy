@@ -2,11 +2,13 @@ import bootcamp.Car
 import bootcamp.Company
 import bootcamp.Employee
 import bootcamp.Engine
+import bootcamp.Project
+import bootcamp.Task
 
 class BootStrap {
 
     def init = { servletContext ->
-        oneToOne()
+        oneToManyNoOwner()
     }
 
     void getter() {
@@ -60,6 +62,27 @@ class BootStrap {
         println "########################################################"
         println "Engine of Car -: ${car.engine}"
         println "Car of Engine -: ${engine.car}"
+        println "########################################################"
+
+    }
+
+    void oneToManyNoOwner() {
+        println "########################################################"
+        println "Project count before save  ${Project.count()}"
+        Project project = new Project(name: "Project")
+        project.save()
+        project.refresh()
+        Task task = new Task(name: "Test")
+
+        println "Task count before save  ${Task.count()}"
+        println "Project tasks before adding task -: ${project.tasks}"
+        project.addToTasks(task)
+        project.save(flush: true)
+        println "Project tasks after save -: ${project.tasks}"
+        println "########################################################"
+        project.delete(flush: true)
+        println "Project count after delete -: ${Project.count()}"
+        println "Task count after project delete  -: ${project.tasks}"
         println "########################################################"
 
     }
