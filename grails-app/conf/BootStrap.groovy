@@ -1,9 +1,10 @@
 import bootcamp.Company
+import bootcamp.Employee
 
 class BootStrap {
 
     def init = { servletContext ->
-        companyToString()
+        transientExample()
     }
 
     void getter() {
@@ -16,6 +17,12 @@ class BootStrap {
     void companyToString() {
         println "########################################################"
         println "toString of company ${createCompany()}"
+        println "########################################################"
+    }
+
+    void transientExample() {
+        println "########################################################"
+        println new Employee(firstName: "Ankur", lastName: "Tripathi").fullName
         println "########################################################"
     }
 
