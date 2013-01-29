@@ -8,7 +8,7 @@ import bootcamp.Task
 class BootStrap {
 
     def init = { servletContext ->
-        oneToManyNoOwner()
+        oneToManyOwner()
     }
 
     void getter() {
@@ -78,6 +78,25 @@ class BootStrap {
         println "Project tasks before adding task -: ${project.tasks}"
         project.addToTasks(task)
         project.save(flush: true)
+        println "Project tasks after save -: ${project.tasks}"
+        println "########################################################"
+        project.delete(flush: true)
+        println "Project count after delete -: ${Project.count()}"
+        println "Task count after project delete  -: ${Task.count()}"
+        println "########################################################"
+
+    }
+
+    void oneToManyOwner() {
+        println "########################################################"
+        println "Project count before save  ${Project.count()}"
+        Project project = new Project(name: "Project")
+        Task task = new Task(name: "Test")
+
+        println "Task count before save  ${Task.count()}"
+        println "Project tasks before adding task -: ${project.tasks}"
+        project.addToTasks(task)
+        project.save()
         println "Project tasks after save -: ${project.tasks}"
         println "########################################################"
         project.delete(flush: true)
