@@ -7,5 +7,7 @@ class Project {
     static constraints = {
     }
 
-    static hasMany = [tasks: Task]
+    static belongsTo = Employee
+
+    static hasMany = [tasks: Task, employees: Employee]
 }

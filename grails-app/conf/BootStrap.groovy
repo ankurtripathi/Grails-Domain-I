@@ -8,7 +8,7 @@ import bootcamp.Task
 class BootStrap {
 
     def init = { servletContext ->
-        oneToManyOwner()
+        manyToMany()
     }
 
     void getter() {
@@ -104,6 +104,19 @@ class BootStrap {
         println "Task count after project delete  -: ${Task.count()}"
         println "########################################################"
 
+    }
+
+    void manyToMany() {
+        println "########################################################"
+        Employee employee = new Employee(firstName: "Ankur", lastName: "Tripathi", company: createCompany(), email: 'ankur+1@intelligrape.com', password: "123411", salary: 20000F)
+        Project project = new Project(name: "Project 1")
+        println "Before adding project to employee ${employee.projects}"
+        println "Before adding project to employee ${project.employees}"
+        employee.addToProjects(project)
+        employee.save()
+        println "After adding project to employee ${employee.projects}"
+        println "After adding project to employee ${project.employees}"
+        println "########################################################"
     }
 
     Company createCompany() {
