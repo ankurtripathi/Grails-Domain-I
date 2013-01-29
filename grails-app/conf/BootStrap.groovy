@@ -1,10 +1,12 @@
+import bootcamp.Car
 import bootcamp.Company
 import bootcamp.Employee
+import bootcamp.Engine
 
 class BootStrap {
 
     def init = { servletContext ->
-        validation()
+        oneToOne()
     }
 
     void getter() {
@@ -47,6 +49,19 @@ class BootStrap {
         println "########################################################"
 
         //For more validation examples go through the classes and documentation
+    }
+
+    void oneToOne() {
+        Car car = new Car()
+        car.save()
+        Engine engine = new Engine(car: car)
+        engine.save()
+
+        println "########################################################"
+        println "Engine of Car -: ${car.engine}"
+        println "Car of Engine -: ${engine.car}"
+        println "########################################################"
+
     }
 
     Company createCompany() {
