@@ -82,7 +82,7 @@ class BootStrap {
         println "########################################################"
         project.delete(flush: true)
         println "Project count after delete -: ${Project.count()}"
-        println "Task count after project delete  -: ${project.tasks}"
+        println "Task count after project delete  -: ${Task.count()}"
         println "########################################################"
 
     }
