@@ -4,7 +4,7 @@ import bootcamp.Employee
 class BootStrap {
 
     def init = { servletContext ->
-        timestampExample()
+        validation()
     }
 
     void getter() {
@@ -34,6 +34,19 @@ class BootStrap {
         employee.save()
         println "Timestamps after save Datecreated: ${employee.dateCreated} -- lastUpdated: ${employee.lastUpdated}"
         println "########################################################"
+    }
+
+    void validation() {
+        Company company = createCompany()
+        Employee employee = new Employee(firstName: "Ankur", lastName: "Tripathi", company: company, email: 'ankur+1@intelligrape.com', salary: 2000000F)
+        println "Validate employee ${employee.save()}"
+        println "########################################################"
+        employee.errors.allErrors.each {
+            println it
+        }
+        println "########################################################"
+
+        //For more validation examples go through the classes and documentation
     }
 
     Company createCompany() {
